@@ -18,10 +18,60 @@
     ></script>
   </head>
   <body>
-    <div class="container">
-      <div class="enemy-hero hero"></div>
-      <div class="fight-area"></div>
-      <div class="player-hero hero"></div>
+    <div class="fight-board">
+      <div class="hero-area">
+        <div class="hero enemy-hero">
+          <div class="description-container">
+            <p class="description speed">Szybkosć: 4</p>
+            <p class="description attack">Atak: 10</p>
+            <p class="description health">Zdrowie: 8</p>
+            <p class="description armor">Pancerz: 1</p>
+          </div>
+        </div>
+      </div>
+      <div class="fight-area">
+        <div class="enemy-deck">
+          <div class="card green-one-heal"></div>
+          <div class="card blue-one-hit"></div>
+          <div class="card white-two-draw"></div>
+          <div class="card red-one-hit"></div>
+          <div class="card green-one-heal"></div>
+          <div class="card blue-one-hit"></div>
+          <div class="card white-two-draw"></div>
+        </div>
+        <div class="enemy-fight-cards">
+          <div class="card green-one-heal"></div>
+          <div class="card blue-one-hit"></div>
+          <div class="card white-two-draw"></div>
+        </div>
+        <div class="fight">
+          <button class="btn-fight">WALCZ</button>
+        </div>
+        <div class="player-fight-cards">
+          <div class="card green-one-heal"></div>
+          <div class="card blue-one-hit"></div>
+          <div class="card white-two-draw"></div>
+        </div>
+        <div class="player-deck">
+          <div class="card green-one-heal"></div>
+          <div class="card blue-one-hit"></div>
+          <div class="card white-two-draw"></div>
+          <div class="card red-one-hit"></div>
+          <div class="card green-one-heal"></div>
+          <div class="card blue-one-hit"></div>
+          <div class="card white-two-draw"></div>
+        </div>
+      </div>
+      <div class="hero-area">
+        <div class="hero player-hero">
+          <div class="description-container">
+            <p class="description speed">Szybkosć: 3</p>
+            <p class="description attack">Atak: 8</p>
+            <p class="description health">Zdrowie: 7</p>
+            <p class="description armor">Pancerz: 0</p>
+          </div>
+        </div>
+      </div>
     </div>
     <script src="js/script.js"></script>
   </body>

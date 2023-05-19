@@ -14,15 +14,17 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  background-color: black;
   background-image: url("../img/background.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   font-family: "Montserrat";
+  overflow: hidden;
 }
 
-.container {
+.fight-board {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,42 +32,231 @@ body {
   height: 100vh;
   width: 100vw;
 }
-.container .hero {
+.fight-board .hero-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 25%;
+  color: white;
+}
+.fight-board .hero-area .hero {
   background-position: center;
-  background-size: auto 100%;
+  background-size: auto 110%;
   background-repeat: no-repeat;
 }
-.container .player-hero {
+.fight-board .hero-area .hero .description-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  top: 48%;
+  left: 15%;
+}
+.fight-board .hero-area .hero .description-container .description {
+  margin: 1% 0;
+}
+.fight-board .hero-area .player-hero {
   background-image: url("..//img/cards/hero-azog.png");
 }
-.container .enemy-hero {
+.fight-board .hero-area .enemy-hero {
   background-image: url("..//img/cards/enemy-havoc.png");
 }
-.container .fight-area {
+.fight-board .fight-area {
   width: 100%;
   height: 50%;
-  background-color: rgba(255, 0, 0, 0.1);
+}
+.fight-board .fight-area .enemy-deck,
+.fight-board .fight-area .player-deck,
+.fight-board .fight-area .enemy-fight-cards,
+.fight-board .fight-area .player-fight-cards {
+  display: flex;
+  justify-content: center;
+}
+.fight-board .fight-area .enemy-deck .red-one-hit,
+.fight-board .fight-area .player-deck .red-one-hit,
+.fight-board .fight-area .enemy-fight-cards .red-one-hit,
+.fight-board .fight-area .player-fight-cards .red-one-hit {
+  background-image: url("../img/cards/red-one-hit.jpg");
+}
+.fight-board .fight-area .enemy-deck .red-two-hit,
+.fight-board .fight-area .player-deck .red-two-hit,
+.fight-board .fight-area .enemy-fight-cards .red-two-hit,
+.fight-board .fight-area .player-fight-cards .red-two-hit {
+  background-image: url("../img/cards/red-two-hit.jpg");
+}
+.fight-board .fight-area .enemy-deck .red-one-heal,
+.fight-board .fight-area .player-deck .red-one-heal,
+.fight-board .fight-area .enemy-fight-cards .red-one-heal,
+.fight-board .fight-area .player-fight-cards .red-one-heal {
+  background-image: url("../img/cards/red-one-heal.jpg");
+}
+.fight-board .fight-area .enemy-deck .red-one-hit-one-draw,
+.fight-board .fight-area .player-deck .red-one-hit-one-draw,
+.fight-board .fight-area .enemy-fight-cards .red-one-hit-one-draw,
+.fight-board .fight-area .player-fight-cards .red-one-hit-one-draw {
+  background-image: url("../img/cards/red-one-hit-one-draw.jpg");
+}
+.fight-board .fight-area .enemy-deck .blue-one-hit,
+.fight-board .fight-area .player-deck .blue-one-hit,
+.fight-board .fight-area .enemy-fight-cards .blue-one-hit,
+.fight-board .fight-area .player-fight-cards .blue-one-hit {
+  background-image: url("../img/cards/blue-one-hit.jpg");
+}
+.fight-board .fight-area .enemy-deck .blue-two-hit,
+.fight-board .fight-area .player-deck .blue-two-hit,
+.fight-board .fight-area .enemy-fight-cards .blue-two-hit,
+.fight-board .fight-area .player-fight-cards .blue-two-hit {
+  background-image: url("../img/cards/blue-two-hit.jpg");
+}
+.fight-board .fight-area .enemy-deck .blue-one-heal,
+.fight-board .fight-area .player-deck .blue-one-heal,
+.fight-board .fight-area .enemy-fight-cards .blue-one-heal,
+.fight-board .fight-area .player-fight-cards .blue-one-heal {
+  background-image: url("../img/cards/blue-one-heal.jpg");
+}
+.fight-board .fight-area .enemy-deck .blue-one-hit-one-draw,
+.fight-board .fight-area .player-deck .blue-one-hit-one-draw,
+.fight-board .fight-area .enemy-fight-cards .blue-one-hit-one-draw,
+.fight-board .fight-area .player-fight-cards .blue-one-hit-one-draw {
+  background-image: url("../img/cards/blue-one-hit-one-draw.jpg");
+}
+.fight-board .fight-area .enemy-deck .green-one-hit,
+.fight-board .fight-area .player-deck .green-one-hit,
+.fight-board .fight-area .enemy-fight-cards .green-one-hit,
+.fight-board .fight-area .player-fight-cards .green-one-hit {
+  background-image: url("../img/cards/green-one-hit.jpg");
+}
+.fight-board .fight-area .enemy-deck .green-two-hit,
+.fight-board .fight-area .player-deck .green-two-hit,
+.fight-board .fight-area .enemy-fight-cards .green-two-hit,
+.fight-board .fight-area .player-fight-cards .green-two-hit {
+  background-image: url("../img/cards/green-two-hit.jpg");
+}
+.fight-board .fight-area .enemy-deck .green-one-heal,
+.fight-board .fight-area .player-deck .green-one-heal,
+.fight-board .fight-area .enemy-fight-cards .green-one-heal,
+.fight-board .fight-area .player-fight-cards .green-one-heal {
+  background-image: url("../img/cards/green-one-heal.jpg");
+}
+.fight-board .fight-area .enemy-deck .green-one-hit-one-draw,
+.fight-board .fight-area .player-deck .green-one-hit-one-draw,
+.fight-board .fight-area .enemy-fight-cards .green-one-hit-one-draw,
+.fight-board .fight-area .player-fight-cards .green-one-hit-one-draw {
+  background-image: url("../img/cards/green-one-hit-one-draw.jpg");
+}
+.fight-board .fight-area .enemy-deck .yellow-one-hit,
+.fight-board .fight-area .player-deck .yellow-one-hit,
+.fight-board .fight-area .enemy-fight-cards .yellow-one-hit,
+.fight-board .fight-area .player-fight-cards .yellow-one-hit {
+  background-image: url("../img/cards/yellow-one-hit.jpg");
+}
+.fight-board .fight-area .enemy-deck .yellow-two-hit,
+.fight-board .fight-area .player-deck .yellow-two-hit,
+.fight-board .fight-area .enemy-fight-cards .yellow-two-hit,
+.fight-board .fight-area .player-fight-cards .yellow-two-hit {
+  background-image: url("../img/cards/yellow-two-hit.jpg");
+}
+.fight-board .fight-area .enemy-deck .yellow-one-heal,
+.fight-board .fight-area .player-deck .yellow-one-heal,
+.fight-board .fight-area .enemy-fight-cards .yellow-one-heal,
+.fight-board .fight-area .player-fight-cards .yellow-one-heal {
+  background-image: url("../img/cards/yellow-one-heal.jpg");
+}
+.fight-board .fight-area .enemy-deck .yellow-one-hit-one-draw,
+.fight-board .fight-area .player-deck .yellow-one-hit-one-draw,
+.fight-board .fight-area .enemy-fight-cards .yellow-one-hit-one-draw,
+.fight-board .fight-area .player-fight-cards .yellow-one-hit-one-draw {
+  background-image: url("../img/cards/yellow-one-hit-one-draw.jpg");
+}
+.fight-board .fight-area .enemy-deck .white-two-draw,
+.fight-board .fight-area .player-deck .white-two-draw,
+.fight-board .fight-area .enemy-fight-cards .white-two-draw,
+.fight-board .fight-area .player-fight-cards .white-two-draw {
+  background-image: url("../img/cards/white-two-draw.jpg");
+}
+.fight-board .fight-area .enemy-deck .white-dodge,
+.fight-board .fight-area .player-deck .white-dodge,
+.fight-board .fight-area .enemy-fight-cards .white-dodge,
+.fight-board .fight-area .player-fight-cards .white-dodge {
+  background-image: url("../img/cards/white-dodge.jpg");
+}
+.fight-board .fight-area .enemy-deck,
+.fight-board .fight-area .player-deck {
+  height: 25%;
+}
+.fight-board .fight-area .enemy-deck .card,
+.fight-board .fight-area .player-deck .card {
+  width: 25px;
+  height: 100%;
+  background-size: cover;
+  transition: 0.5s;
+}
+.fight-board .fight-area .enemy-deck .card:hover,
+.fight-board .fight-area .player-deck .card:hover {
+  width: var(--card-width);
+}
+.fight-board .fight-area .enemy-fight-cards,
+.fight-board .fight-area .player-fight-cards {
+  height: 20%;
+  padding: 5px 0;
+}
+.fight-board .fight-area .enemy-fight-cards .card,
+.fight-board .fight-area .player-fight-cards .card {
+  width: 40px;
+  height: 100%;
+  background-size: cover;
+  transition: 0.5s;
+}
+.fight-board .fight-area .enemy-fight-cards .card:hover,
+.fight-board .fight-area .player-fight-cards .card:hover {
+  width: var(--cardFight-width);
+}
+.fight-board .fight-area .fight {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10%;
+}
+.fight-board .fight-area .fight .btn-fight {
+  padding: 3px 15px;
+  font-size: 1rem;
+  background-color: rgb(148, 22, 0);
+  border: none;
+  border-radius: 3px;
+  color: white;
+  transition: 0.5s;
+}
+.fight-board .fight-area .fight .btn-fight:hover {
+  transform: scale(1.2);
 }
 
-@media (min-width: 768px) {
-  .container {
+@media (min-width: 667px) {
+  .fight-board {
     flex-direction: row;
+    padding: 5vh 0;
   }
-  .container .hero {
+  .fight-board .hero-area {
     width: 25%;
     height: 100%;
-    background-size: 100% auto;
   }
-  .container .player-hero {
-    background-position: bottom;
-  }
-  .container .enemy-hero {
-    background-position: top;
-  }
-  .container .fight-area {
+  .fight-board .fight-area {
     width: 50%;
     height: 100%;
+  }
+  .fight-board .fight-area .enemy-deck {
+    justify-content: start;
+  }
+  .fight-board .fight-area .player-deck {
+    justify-content: end;
+  }
+  .fight-board .fight-area .enemy-deck,
+  .fight-board .fight-area .player-deck {
+    height: 25%;
+  }
+  .fight-board .fight-area .enemy-deck .card,
+  .fight-board .fight-area .player-deck .card {
+    width: 50px;
   }
 }/*# sourceMappingURL=style.css.map */
