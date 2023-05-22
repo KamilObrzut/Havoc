@@ -134,6 +134,10 @@ body {
       .card:hover {
         width: var(--card-width);
       }
+      .marked {
+        filter: brightness(150%);
+        width: var(--card-width) !important;
+      }
     }
     .enemy-fight-cards,
     .player-fight-cards {
@@ -192,11 +196,22 @@ body {
       .player-deck {
         height: 25%;
         .card {
-          width: 50px;
+          width: 30px;
         }
       }
-      .fight {
-        .btn-fight {
+    }
+  }
+}
+
+@media (min-height: 897px) {
+  .fight-board {
+    .fight-area {
+      .enemy-deck,
+      .player-deck {
+        height: 25%;
+        margin: 5px 0;
+        .card {
+          width: 60px;
         }
       }
     }

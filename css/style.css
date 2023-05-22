@@ -197,6 +197,11 @@ body {
 .fight-board .fight-area .player-deck .card:hover {
   width: var(--card-width);
 }
+.fight-board .fight-area .enemy-deck .marked,
+.fight-board .fight-area .player-deck .marked {
+  filter: brightness(150%);
+  width: var(--card-width) !important;
+}
 .fight-board .fight-area .enemy-fight-cards,
 .fight-board .fight-area .player-fight-cards {
   height: 20%;
@@ -257,6 +262,17 @@ body {
   }
   .fight-board .fight-area .enemy-deck .card,
   .fight-board .fight-area .player-deck .card {
-    width: 50px;
+    width: 30px;
+  }
+}
+@media (min-height: 897px) {
+  .fight-board .fight-area .enemy-deck,
+  .fight-board .fight-area .player-deck {
+    height: 25%;
+    margin: 5px 0;
+  }
+  .fight-board .fight-area .enemy-deck .card,
+  .fight-board .fight-area .player-deck .card {
+    width: 60px;
   }
 }/*# sourceMappingURL=style.css.map */
