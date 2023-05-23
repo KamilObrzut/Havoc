@@ -210,29 +210,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  const calculateCardWidthLastChild = () => {
-    const lastCardInEnemyDeck = enemyDeck.lastElementChild;
-    const lastCardInPlayerDeck = playerDeck.lastElementChild;
-    const lastCardinEnemyFightCards = enemyFightCards.lastElementChild;
-    const lastCardinPlayerFightCards = playerFightCards.lastElementChild;
-
-    const cardWidth = lastCardInEnemyDeck ? lastCardInEnemyDeck.offsetHeight * 0.89 : 0;
-    const cardFightWidth = lastCardinEnemyFightCards ? lastCardinEnemyFightCards.offsetHeight * 0.89 : 0;
-
-    if (lastCardInEnemyDeck) lastCardInEnemyDeck.style.width = `${cardWidth}px`;
-    if (lastCardInPlayerDeck) lastCardInPlayerDeck.style.width = `${cardWidth}px`;
-    if (lastCardinEnemyFightCards) lastCardinEnemyFightCards.style.width = `${cardFightWidth}px`;
-    if (lastCardinPlayerFightCards) lastCardinPlayerFightCards.style.width = `${cardFightWidth}px`;
-
-    if (lastCardInEnemyDeck || lastCardInPlayerDeck || lastCardinEnemyFightCards || lastCardinPlayerFightCards) {
-      document.documentElement.style.setProperty("--card-width", `${cardWidth}px`);
-      document.documentElement.style.setProperty("--cardFight-width", `${cardFightWidth}px`);
-    }
+  const calculateDeckCardWidth = () => {
+    const parentHeight = enemyDeck.offsetHeight;
+    const cardWidth = parentHeight * 0.82;
+    document.documentElement.style.setProperty("--card-width", `${cardWidth}px`);
   };
-
-  if (enemyFightCards.childElementCount > 0 || playerFightCards.childElementCount > 0) {
-    calculateCardWidthLastChild();
-  }
+  const calculateFightCardWidth = () => {
+    const parentHeight = enemyFightCards.offsetHeight;
+    const cardWidth = parentHeight * 0.8;
+    document.documentElement.style.setProperty("--f-card-width", `${cardWidth}px`);
+  };
+  calculateDeckCardWidth();
+  calculateFightCardWidth();
 
   // Shuffling and Dealing cards function
   const createCardDivs = () => {
@@ -282,11 +271,34 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // Move cards to fight function
+
+  const cardsCheckArr = [];
+
+  const moveEnemyCardsToFight = () => {
+    allCards.forEach((card) => {
+      if (card.classList.contains("marked")) {
+        enemyFightCards.appendChild(card);
+        card.classList.remove("marked");
+      }
+    });
+  };
+  const movePlayerCardsToFight = () => {
+    allCards.forEach((card) => {
+      if (card.classList.contains("marked")) {
+        playerFightCards.appendChild(card);
+        card.classList.remove("marked");
+      }
+    });
+  };
+
+  enemyFightCards.addEventListener("click", moveEnemyCardsToFight);
+  playerFightCards.addEventListener("click", movePlayerCardsToFight);
+
   calculateHeroSize();
   calculateFontSize();
-  calculateCardWidthLastChild();
 
   window.addEventListener("resize", calculateHeroSize);
   window.addEventListener("resize", calculateFontSize);
-  window.addEventListener("resize", calculateCardWidthLastChild);
+  window.addEventListener("resize", calculateDeckCardWidth);
 });
