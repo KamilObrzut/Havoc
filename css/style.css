@@ -63,6 +63,14 @@ body {
 .fight-board .hero-area .enemy-hero {
   background-image: url("..//img/cards/enemy-havoc.png");
 }
+.fight-board .hero-area .enemy-hero-attack-animation {
+  z-index: 50;
+  animation: enemyHeroAttackY 1s ease-in;
+}
+.fight-board .hero-area .player-hero-attack-animation {
+  z-index: 50;
+  animation: playerHeroAttackY 1s ease-in;
+}
 .fight-board .fight-area {
   width: 100%;
   height: 60%;
@@ -288,16 +296,30 @@ body {
   margin: 3px 0;
 }
 .fight-board .fight-area .fight .btn-fight {
+  width: 130px;
+  padding: 8px 0;
   background-color: transparent;
   background-image: url("../img/btn-attack.png");
-  background-position: center;
-  background-size: 110%;
+  background-size: 40%;
+  background-repeat: no-repeat;
   border: none;
+  text-align: left;
+  color: white;
   transition: 0.5s;
-  padding: 15px 15px;
 }
-.fight-board .fight-area .fight .btn-fight:hover {
-  transform: rotate(180deg);
+.fight-board .fight-area .fight .btn-fight-enemy {
+  background-position: right;
+  text-align: left;
+}
+.fight-board .fight-area .fight .btn-fight-player {
+  background-position: left;
+  text-align: right;
+}
+.fight-board .fight-area .fight .btn-fight-enemy:hover {
+  transform: translateX(-20px);
+}
+.fight-board .fight-area .fight .btn-fight-player:hover {
+  transform: translateX(20px);
 }
 .fight-board .fight-area .up-or-down {
   display: flex;
@@ -344,14 +366,93 @@ body {
     transform: translateX(0%);
   }
 }
+@keyframes enemyHeroAttackY {
+  0% {
+    position: relative;
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(430%);
+  }
+  50% {
+    transform: translateX(20%);
+  }
+  75% {
+    transform: translateX(-20%);
+  }
+  90% {
+    transform: translateY(430%);
+  }
+}
+@keyframes enemyHeroAttackX {
+  0% {
+    position: relative;
+    transform: translateX(0);
+  }
+  30% {
+    transform: translateX(330%);
+  }
+  50% {
+    transform: translateY(20%);
+  }
+  75% {
+    transform: translateY(-20%);
+  }
+  90% {
+    transform: translateX(330%);
+  }
+}
+@keyframes playerHeroAttackY {
+  0% {
+    position: relative;
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-430%);
+  }
+  50% {
+    transform: translateX(-20%);
+  }
+  75% {
+    transform: translateX(20%);
+  }
+  90% {
+    transform: translateY(-430%);
+  }
+}
+@keyframes playerHeroAttackX {
+  0% {
+    position: relative;
+    transform: translateX(0);
+  }
+  30% {
+    transform: translateX(-330%);
+  }
+  50% {
+    transform: translateY(-20%);
+  }
+  75% {
+    transform: translateY(20%);
+  }
+  90% {
+    transform: translateX(-330%);
+  }
+}
 @media (min-width: 667px) {
   .fight-board {
     flex-direction: row;
-    padding: 2vh 0;
+    padding: 3vh 0;
   }
   .fight-board .hero-area {
     width: 25%;
     height: 100%;
+  }
+  .fight-board .hero-area .enemy-hero-attack-animation {
+    animation: enemyHeroAttackX 1s ease-in;
+  }
+  .fight-board .hero-area .player-hero-attack-animation {
+    z-index: 50;
+    animation: playerHeroAttackX 1s ease-in;
   }
   .fight-board .fight-area {
     width: 50%;
@@ -397,8 +498,13 @@ body {
     margin: 3px 0;
   }
   .fight-board .fight-area .fight .btn-fight {
-    font-size: 1.2rem;
-    padding: 25px 25px;
+    font-size: 1.4rem;
+  }
+  .fight-board .fight-area .fight .btn-fight-enemy {
+    transform: translateX(-10px);
+  }
+  .fight-board .fight-area .fight .btn-fight-player {
+    transform: translateX(10px);
   }
 }
 @media (max-height: 500px) and (min-width: 667px) {
@@ -444,19 +550,17 @@ body {
     width: calc(var(--f-card-width) - 2px);
   }
   .fight-board .fight-area .fight {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 3%;
+    height: 4%;
     margin: 3px 0;
   }
   .fight-board .fight-area .fight .btn-fight {
-    padding: 15px 15px;
-    font-size: 1rem;
-    border-radius: 3px;
+    font-size: 1.2rem;
   }
-  .fight-board .fight-area .fight .btn-fight:hover {
-    transform: scale(1.2);
+  .fight-board .fight-area .fight .btn-fight-enemy {
+    transform: scale(0.6);
+  }
+  .fight-board .fight-area .fight .btn-fight-player {
+    transform: scale(0.6);
   }
   .fight-board .fight-area .up-or-down {
     display: flex;

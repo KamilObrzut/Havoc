@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnUpEnemy = document.querySelector(".btn-up-enemy");
   const btnDownPlayer = document.querySelector(".btn-down-player");
   const btnUpPlayer = document.querySelector(".btn-up-player");
+  const btnFightEnemy = document.querySelector(".btn-fight-enemy");
+  const btnFightPlayer = document.querySelector(".btn-fight-player");
 
   // Card database
   const baseCardsDatabase = [
@@ -323,6 +325,26 @@ document.addEventListener("DOMContentLoaded", () => {
   btnUpEnemy.addEventListener("click", moveEnemyCardsToDeck);
   btnUpPlayer.addEventListener("click", movePlayerCardsToFight);
   btnDownPlayer.addEventListener("click", movePlayerCardsToDeck);
+
+  //Animation attack
+  const heroEnemy = document.querySelector(".enemy-hero");
+  const heroPlayer = document.querySelector(".player-hero");
+
+  const enemyAnimationAttack = () => {
+    heroEnemy.classList.add("enemy-hero-attack-animation");
+    setTimeout(() => {
+      heroEnemy.classList.remove("enemy-hero-attack-animation");
+    }, 1000);
+  };
+  const playerAnimationAttack = () => {
+    heroPlayer.classList.add("player-hero-attack-animation");
+    setTimeout(() => {
+      heroPlayer.classList.remove("player-hero-attack-animation");
+    }, 1000);
+  };
+
+  btnFightEnemy.addEventListener("click", enemyAnimationAttack);
+  btnFightPlayer.addEventListener("click", playerAnimationAttack);
 
   window.addEventListener("resize", calculateHeroSize);
   window.addEventListener("resize", calculateFontSize);
