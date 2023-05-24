@@ -7,6 +7,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const playerDeck = document.querySelector(".player-deck");
   const enemyFightCards = document.querySelector(".enemy-fight-cards");
   const playerFightCards = document.querySelector(".player-fight-cards");
+  const btnDownEnemy = document.querySelector(".btn-down-enemy");
+  const btnUpEnemy = document.querySelector(".btn-up-enemy");
+  const btnDownPlayer = document.querySelector(".btn-down-player");
+  const btnUpPlayer = document.querySelector(".btn-up-player");
 
   // Card database
   const baseCardsDatabase = [
@@ -222,6 +226,8 @@ document.addEventListener("DOMContentLoaded", () => {
   };
   calculateDeckCardWidth();
   calculateFightCardWidth();
+  calculateHeroSize();
+  calculateFontSize();
 
   // Shuffling and Dealing cards function
   const createCardDivs = () => {
@@ -272,33 +278,54 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Move cards to fight function
-
   const cardsCheckArr = [];
+  let animateCards = true;
 
   const moveEnemyCardsToFight = () => {
     allCards.forEach((card) => {
       if (card.classList.contains("marked")) {
         enemyFightCards.appendChild(card);
         card.classList.remove("marked");
+        animateCards = false;
       }
     });
   };
+  const moveEnemyCardsToDeck = () => {
+    allCards.forEach((card) => {
+      if (card.classList.contains("marked")) {
+        enemyDeck.appendChild(card);
+        card.classList.remove("marked");
+        animateCards = false;
+      }
+    });
+  };
+
   const movePlayerCardsToFight = () => {
     allCards.forEach((card) => {
       if (card.classList.contains("marked")) {
         playerFightCards.appendChild(card);
         card.classList.remove("marked");
+        animateCards = false;
+      }
+    });
+  };
+  const movePlayerCardsToDeck = () => {
+    allCards.forEach((card) => {
+      if (card.classList.contains("marked")) {
+        playerDeck.appendChild(card);
+        card.classList.remove("marked");
+        animateCards = false;
       }
     });
   };
 
-  enemyFightCards.addEventListener("click", moveEnemyCardsToFight);
-  playerFightCards.addEventListener("click", movePlayerCardsToFight);
-
-  calculateHeroSize();
-  calculateFontSize();
+  btnDownEnemy.addEventListener("click", moveEnemyCardsToFight);
+  btnUpEnemy.addEventListener("click", moveEnemyCardsToDeck);
+  btnUpPlayer.addEventListener("click", movePlayerCardsToFight);
+  btnDownPlayer.addEventListener("click", movePlayerCardsToDeck);
 
   window.addEventListener("resize", calculateHeroSize);
   window.addEventListener("resize", calculateFontSize);
   window.addEventListener("resize", calculateDeckCardWidth);
+  window.addEventListener("resize", calculateFightCardWidth);
 });
