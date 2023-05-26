@@ -374,15 +374,6 @@ body {
   30% {
     transform: translateY(430%);
   }
-  50% {
-    transform: translateX(20%);
-  }
-  75% {
-    transform: translateX(-20%);
-  }
-  90% {
-    transform: translateY(430%);
-  }
 }
 @keyframes enemyHeroAttackX {
   0% {
@@ -390,15 +381,6 @@ body {
     transform: translateX(0);
   }
   30% {
-    transform: translateX(330%);
-  }
-  50% {
-    transform: translateY(20%);
-  }
-  75% {
-    transform: translateY(-20%);
-  }
-  90% {
     transform: translateX(330%);
   }
 }
@@ -410,15 +392,6 @@ body {
   30% {
     transform: translateY(-430%);
   }
-  50% {
-    transform: translateX(-20%);
-  }
-  75% {
-    transform: translateX(20%);
-  }
-  90% {
-    transform: translateY(-430%);
-  }
 }
 @keyframes playerHeroAttackX {
   0% {
@@ -426,15 +399,6 @@ body {
     transform: translateX(0);
   }
   30% {
-    transform: translateX(-330%);
-  }
-  50% {
-    transform: translateY(-20%);
-  }
-  75% {
-    transform: translateY(20%);
-  }
-  90% {
     transform: translateX(-330%);
   }
 }
@@ -474,6 +438,10 @@ body {
   }
   .fight-board .fight-area .enemy-deck .card:last-child,
   .fight-board .fight-area .player-deck .card:last-child {
+    width: calc(var(--card-width) + 8px);
+  }
+  .fight-board .fight-area .enemy-deck .marked,
+  .fight-board .fight-area .player-deck .marked {
     width: calc(var(--card-width) + 8px);
   }
   .fight-board .fight-area .player-fight-cards,
@@ -554,13 +522,10 @@ body {
     margin: 3px 0;
   }
   .fight-board .fight-area .fight .btn-fight {
-    font-size: 1.2rem;
-  }
-  .fight-board .fight-area .fight .btn-fight-enemy {
-    transform: scale(0.6);
-  }
-  .fight-board .fight-area .fight .btn-fight-player {
-    transform: scale(0.6);
+    font-size: 1.1rem;
+    padding: 4px 0;
+    background-size: 25%;
+    width: 100px;
   }
   .fight-board .fight-area .up-or-down {
     display: flex;

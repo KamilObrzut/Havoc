@@ -298,15 +298,6 @@ body {
   30% {
     transform: translateY(430%);
   }
-  50% {
-    transform: translateX(20%);
-  }
-  75% {
-    transform: translateX(-20%);
-  }
-  90% {
-    transform: translateY(430%);
-  }
 }
 
 @keyframes enemyHeroAttackX {
@@ -315,15 +306,6 @@ body {
     transform: translateX(0);
   }
   30% {
-    transform: translateX(330%);
-  }
-  50% {
-    transform: translateY(20%);
-  }
-  75% {
-    transform: translateY(-20%);
-  }
-  90% {
     transform: translateX(330%);
   }
 }
@@ -335,15 +317,6 @@ body {
   30% {
     transform: translateY(-430%);
   }
-  50% {
-    transform: translateX(-20%);
-  }
-  75% {
-    transform: translateX(20%);
-  }
-  90% {
-    transform: translateY(-430%);
-  }
 }
 
 @keyframes playerHeroAttackX {
@@ -352,15 +325,6 @@ body {
     transform: translateX(0);
   }
   30% {
-    transform: translateX(-330%);
-  }
-  50% {
-    transform: translateY(-20%);
-  }
-  75% {
-    transform: translateY(20%);
-  }
-  90% {
     transform: translateX(-330%);
   }
 }
@@ -396,6 +360,9 @@ body {
           width: 60px;
         }
         .card:last-child {
+          width: calc(var(--card-width) + 8px);
+        }
+        .marked {
           width: calc(var(--card-width) + 8px);
         }
       }
@@ -472,13 +439,10 @@ body {
         height: 4%;
         margin: 3px 0;
         .btn-fight {
-          font-size: 1.2rem;
-        }
-        .btn-fight-enemy {
-          transform: scale(0.6);
-        }
-        .btn-fight-player {
-          transform: scale(0.6);
+          font-size: 1.1rem;
+          padding: 4px 0;
+          background-size: 25%;
+          width: 100px;
         }
       }
       .up-or-down {
