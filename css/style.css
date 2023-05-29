@@ -57,6 +57,12 @@ body {
 .fight-board .hero-area .hero .description-container .description {
   margin: 1% 0;
 }
+.fight-board .hero-area .hero .description-container .player-health {
+  color: greenyellow;
+}
+.fight-board .hero-area .hero .description-container .enemy-health {
+  color: greenyellow;
+}
 .fight-board .hero-area .player-hero {
   background-image: url("..//img/cards/hero-azog.png");
 }
@@ -314,6 +320,9 @@ body {
 .fight-board .fight-area .fight .btn-fight-player {
   background-position: left;
   text-align: right;
+}
+.fight-board .fight-area .fight .disable {
+  display: none;
 }
 .fight-board .fight-area .fight .btn-fight-enemy:hover {
   transform: translateX(-20px);

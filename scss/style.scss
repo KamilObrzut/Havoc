@@ -47,6 +47,12 @@ body {
         .description {
           margin: 1% 0;
         }
+        .player-health {
+          color: greenyellow;
+        }
+        .enemy-health {
+          color: greenyellow;
+        }
       }
     }
     .player-hero {
@@ -234,6 +240,9 @@ body {
       .btn-fight-player {
         background-position: left;
         text-align: right;
+      }
+      .disable {
+        display: none;
       }
       .btn-fight-enemy:hover {
         transform: translateX(-20px);
