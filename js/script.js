@@ -232,6 +232,7 @@ document.addEventListener("DOMContentLoaded", () => {
   calculateFontSize();
 
   // Shuffling and Dealing cards function
+  let usedCards = [];
   const createCardDivs = () => {
     const remainingCards = [...baseCardsDatabase];
 
@@ -250,6 +251,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cardDiv.setAttribute("data-heal", card.heal);
       cardDiv.setAttribute("data-draw", card.draw);
       playerDeck.appendChild(cardDiv);
+      usedCards.push(card);
     });
 
     const enemyCards = [];
@@ -267,6 +269,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cardDiv.setAttribute("data-heal", card.heal);
       cardDiv.setAttribute("data-draw", card.draw);
       enemyDeck.appendChild(cardDiv);
+      usedCards.push(card);
     });
   };
   createCardDivs();
@@ -426,10 +429,6 @@ document.addEventListener("DOMContentLoaded", () => {
       totalDraw += draw;
     });
 
-    console.log("Atak: ", totalAttack);
-    console.log("Heal: ", totalHeal);
-    console.log("Draw: ", totalDraw);
-
     while (enemyFightCards.firstChild) {
       enemyFightCards.removeChild(enemyFightCards.firstChild);
     }
@@ -438,14 +437,48 @@ document.addEventListener("DOMContentLoaded", () => {
       let playerHealthElement = document.querySelector(".player-health");
       let playerHealth = parseInt(playerHealthElement.textContent.slice(-1));
       let playerNewHealth = playerHealth - totalAttack;
-      playerHealthElement.textContent = "Zdrowie: " + playerNewHealth;
+      playerHealthElement.textContent = "Zdrowie: " + playerNewHealth + " " + "( - " + totalAttack + " )";
       playerHealthElement.style.color = "red";
+
+      let enemyHealthElement = document.querySelector(".enemy-health");
+      let enemyHealth = parseInt(enemyHealthElement.textContent.slice(-1));
+      let enemyNewHealth = enemyHealth + totalHeal;
+      enemyHealthElement.textContent = "Zdrowie: " + enemyNewHealth + " " + "( + " + totalHeal + " )";
+      enemyHealthElement.style.color = "green";
 
       setTimeout(() => {
         playerHealthElement.style.color = "";
+        playerHealthElement.textContent = "Zdrowie: " + playerNewHealth;
+        enemyHealthElement.style.color = "";
+        enemyHealthElement.textContent = "Zdrowie: " + enemyNewHealth;
       }, 2000);
     };
     changeHealth();
+
+    const addNewCards = () => {
+      const remainingCards = baseCardsDatabase.filter((card) => !usedCards.includes(card));
+
+      for (let i = 0; i < totalDraw; i++) {
+        if (remainingCards.length === 0) {
+          break;
+        }
+
+        const randomIndex = Math.floor(Math.random() * remainingCards.length);
+        const card = remainingCards.splice(randomIndex, 1)[0];
+
+        const cardDiv = document.createElement("div");
+        cardDiv.classList.add("card", card.name);
+        cardDiv.setAttribute("data-attack", card.attack);
+        cardDiv.setAttribute("data-heal", card.heal);
+        cardDiv.setAttribute("data-draw", card.draw);
+        enemyDeck.appendChild(cardDiv);
+
+        usedCards.push(card);
+        console.log(usedCards);
+      }
+      enemyMarkedCards = [];
+    };
+    addNewCards();
 
     enemyMarkedCards = [];
     toggleButtons();
@@ -470,10 +503,6 @@ document.addEventListener("DOMContentLoaded", () => {
       totalDraw += draw;
     });
 
-    console.log("Atak: ", totalAttack);
-    console.log("Heal: ", totalHeal);
-    console.log("Draw: ", totalDraw);
-
     while (playerFightCards.firstChild) {
       playerFightCards.removeChild(playerFightCards.firstChild);
     }
@@ -482,14 +511,47 @@ document.addEventListener("DOMContentLoaded", () => {
       let enemyHealthElement = document.querySelector(".enemy-health");
       let enemyHealth = parseInt(enemyHealthElement.textContent.slice(-1));
       let enemyNewHealth = enemyHealth - totalAttack;
-      enemyHealthElement.textContent = "Zdrowie: " + enemyNewHealth;
+      enemyHealthElement.textContent = "Zdrowie: " + enemyNewHealth + " " + "( - " + totalAttack + " )";
       enemyHealthElement.style.color = "red";
+
+      let playerHealthElement = document.querySelector(".player-health");
+      let playerHealth = parseInt(playerHealthElement.textContent.slice(-1));
+      let playerNewHealth = playerHealth + totalHeal;
+      playerHealthElement.textContent = "Zdrowie: " + playerNewHealth + " " + "( + " + totalHeal + " )";
+      playerHealthElement.style.color = "green";
 
       setTimeout(() => {
         enemyHealthElement.style.color = "";
+        enemyHealthElement.textContent = "Zdrowie: " + enemyNewHealth;
+        playerHealthElement.style.color = "";
+        playerHealthElement.textContent = "Zdrowie: " + playerNewHealth;
       }, 2000);
     };
     changeHealth();
+
+    const addNewCards = () => {
+      const remainingCards = baseCardsDatabase.filter((card) => !usedCards.includes(card));
+
+      for (let i = 0; i < totalDraw; i++) {
+        if (remainingCards.length === 0) {
+          break;
+        }
+
+        const randomIndex = Math.floor(Math.random() * remainingCards.length);
+        const card = remainingCards.splice(randomIndex, 1)[0];
+
+        const cardDiv = document.createElement("div");
+        cardDiv.classList.add("card", card.name);
+        cardDiv.setAttribute("data-attack", card.attack);
+        cardDiv.setAttribute("data-heal", card.heal);
+        cardDiv.setAttribute("data-draw", card.draw);
+        playerDeck.appendChild(cardDiv);
+
+        usedCards.push(card);
+        console.log(usedCards);
+      }
+    };
+    addNewCards();
 
     playerMarkedCards = [];
     toggleButtons();
@@ -497,6 +559,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   btnFightPlayer.addEventListener("click", fightPlayer);
   btnFightEnemy.addEventListener("click", fightEnemy);
+
+  console.log(usedCards);
 
   window.addEventListener("resize", calculateHeroSize);
   window.addEventListener("resize", calculateFontSize);
