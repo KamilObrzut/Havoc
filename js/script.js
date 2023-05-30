@@ -160,12 +160,12 @@ document.addEventListener("DOMContentLoaded", () => {
       heal: 0,
       draw: 1,
     },
-    {
-      name: "white-dodge",
-      attack: 0,
-      heal: 0,
-      draw: 0,
-    },
+    //{
+    //  name: "white-dodge",
+    //  attack: 0,
+    //  heal: 0,
+    //  draw: 0,
+    //},
     {
       name: "white-two-draw",
       attack: 0,
@@ -275,54 +275,62 @@ document.addEventListener("DOMContentLoaded", () => {
   createCardDivs();
 
   // Marking cards functions
-  const enemyCards = Array.from(enemyDeck.childNodes);
-  const playerCards = Array.from(playerDeck.childNodes);
+  let enemyCards = Array.from(enemyDeck.childNodes);
+  let playerCards = Array.from(playerDeck.childNodes);
   let enemyMarkedCards = [];
   let playerMarkedCards = [];
 
-  enemyCards.forEach((card) => {
-    card.addEventListener("click", (event) => {
-      const cardClassList = event.target.classList;
-      const cardColor = cardClassList[1].split("-")[0];
+  const markingEnemyCards = () => {
+    enemyCards = Array.from(enemyDeck.childNodes);
+    enemyCards.forEach((card) => {
+      card.addEventListener("click", (event) => {
+        const cardClassList = event.target.classList;
+        const cardColor = cardClassList[1].split("-")[0];
 
-      if (btnFightEnemy.classList.contains("disable")) {
-        return;
-      }
+        if (btnFightEnemy.classList.contains("disable")) {
+          return;
+        }
 
-      if (enemyMarkedCards.length === 0) {
-        enemyMarkedCards.push(card);
-        cardClassList.add("marked");
-      } else if (cardClassList.contains("marked")) {
-        cardClassList.remove("marked");
-        enemyMarkedCards = enemyMarkedCards.filter((markedCard) => markedCard !== card);
-      } else if (cardColor === enemyMarkedCards[0].classList[1].split("-")[0] || cardColor.includes("white")) {
-        enemyMarkedCards.push(card);
-        cardClassList.add("marked");
-      }
+        if (enemyMarkedCards.length === 0) {
+          enemyMarkedCards.push(card);
+          cardClassList.add("marked");
+        } else if (cardClassList.contains("marked")) {
+          cardClassList.remove("marked");
+          enemyMarkedCards = enemyMarkedCards.filter((markedCard) => markedCard !== card);
+        } else if (cardColor === enemyMarkedCards[0].classList[1].split("-")[0] || cardColor.includes("white")) {
+          enemyMarkedCards.push(card);
+          cardClassList.add("marked");
+        }
+      });
     });
-  });
+  };
+  markingEnemyCards();
 
-  playerCards.forEach((card) => {
-    card.addEventListener("click", (event) => {
-      const cardClassList = event.target.classList;
-      const cardColor = cardClassList[1].split("-")[0];
+  const markingPlayerCards = () => {
+    playerCards = Array.from(playerDeck.childNodes);
+    playerCards.forEach((card) => {
+      card.addEventListener("click", (event) => {
+        const cardClassList = event.target.classList;
+        const cardColor = cardClassList[1].split("-")[0];
 
-      if (btnFightPlayer.classList.contains("disable")) {
-        return;
-      }
+        if (btnFightPlayer.classList.contains("disable")) {
+          return;
+        }
 
-      if (playerMarkedCards.length === 0) {
-        playerMarkedCards.push(card);
-        cardClassList.add("marked");
-      } else if (cardClassList.contains("marked")) {
-        cardClassList.remove("marked");
-        playerMarkedCards = playerMarkedCards.filter((markedCard) => markedCard !== card);
-      } else if (cardColor === playerMarkedCards[0].classList[1].split("-")[0] || cardColor.includes("white")) {
-        playerMarkedCards.push(card);
-        cardClassList.add("marked");
-      }
+        if (playerMarkedCards.length === 0) {
+          playerMarkedCards.push(card);
+          cardClassList.add("marked");
+        } else if (cardClassList.contains("marked")) {
+          cardClassList.remove("marked");
+          playerMarkedCards = playerMarkedCards.filter((markedCard) => markedCard !== card);
+        } else if (cardColor === playerMarkedCards[0].classList[1].split("-")[0] || cardColor.includes("white")) {
+          playerMarkedCards.push(card);
+          cardClassList.add("marked");
+        }
+      });
     });
-  });
+  };
+  markingPlayerCards();
 
   // Move cards to fight function
   const moveEnemyCardsToFight = () => {
@@ -332,6 +340,7 @@ document.addEventListener("DOMContentLoaded", () => {
         card.classList.remove("marked");
       }
     });
+    markingEnemyCards();
   };
   const moveEnemyCardsToDeck = () => {
     const enemyAttackCards = Array.from(enemyFightCards.childNodes);
@@ -340,6 +349,7 @@ document.addEventListener("DOMContentLoaded", () => {
       card.classList.remove("marked");
     });
     enemyMarkedCards = [];
+    markingEnemyCards();
   };
 
   const movePlayerCardsToFight = () => {
@@ -349,6 +359,7 @@ document.addEventListener("DOMContentLoaded", () => {
         card.classList.remove("marked");
       }
     });
+    markingPlayerCards();
   };
   const movePlayerCardsToDeck = () => {
     const playerAttackCards = Array.from(playerFightCards.childNodes);
@@ -357,6 +368,7 @@ document.addEventListener("DOMContentLoaded", () => {
       card.classList.remove("marked");
     });
     playerMarkedCards = [];
+    markingPlayerCards();
   };
 
   btnDownEnemy.addEventListener("click", moveEnemyCardsToFight);
@@ -474,12 +486,11 @@ document.addEventListener("DOMContentLoaded", () => {
         enemyDeck.appendChild(cardDiv);
 
         usedCards.push(card);
-        console.log(usedCards);
       }
       enemyMarkedCards = [];
     };
     addNewCards();
-
+    markingEnemyCards();
     enemyMarkedCards = [];
     toggleButtons();
   };
@@ -548,19 +559,41 @@ document.addEventListener("DOMContentLoaded", () => {
         playerDeck.appendChild(cardDiv);
 
         usedCards.push(card);
-        console.log(usedCards);
       }
     };
     addNewCards();
-
+    markingPlayerCards();
     playerMarkedCards = [];
     toggleButtons();
   };
 
-  btnFightPlayer.addEventListener("click", fightPlayer);
-  btnFightEnemy.addEventListener("click", fightEnemy);
+  const gameOver = () => {
+    let enemyHealthElement = document.querySelector(".enemy-health");
+    let enemyHealth = parseInt(enemyHealthElement.textContent.slice(-9));
+    let playerHealthElement = document.querySelector(".player-health");
+    let playerHealth = parseInt(playerHealthElement.textContent.slice(-9));
 
-  console.log(usedCards);
+    if (enemyHealth < 1) {
+      setTimeout(() => {
+        alert("Wygrywa AZOG! Odśwież aby zagrać ponownie");
+      }, 1000);
+    }
+    if (playerHealth < 1) {
+      setTimeout(() => {
+        alert("Wygrywa HAVOC! Odśwież aby zagrać ponownie");
+      }, 1000);
+    }
+  };
+
+  btnFightPlayer.addEventListener("click", () => {
+    fightPlayer();
+    gameOver();
+  });
+
+  btnFightEnemy.addEventListener("click", () => {
+    fightEnemy();
+    gameOver();
+  });
 
   window.addEventListener("resize", calculateHeroSize);
   window.addEventListener("resize", calculateFontSize);
