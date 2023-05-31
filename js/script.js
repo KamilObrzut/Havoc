@@ -174,6 +174,23 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   ];
 
+  const specialCardDatabase = [
+    {
+      name: "azog-one-hit-one-heal",
+      attack: 1,
+      heal: 1,
+      draw: 0,
+      dis: 0,
+    },
+    {
+      name: "azog-two-hit-one-dis",
+      attack: 2,
+      heal: 1,
+      draw: 0,
+      dis: 1,
+    },
+  ];
+
   // Interface Funcitions
   const calculateHeroSize = () => {
     const windowWidth = window.innerWidth;
@@ -233,7 +250,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Shuffling and Dealing cards function
   let usedCards = [];
-  const createCardDivs = () => {
+  const shufflingBaseCards = () => {
     const remainingCards = [...baseCardsDatabase];
 
     const playerCards = [];
@@ -272,7 +289,38 @@ document.addEventListener("DOMContentLoaded", () => {
       usedCards.push(card);
     });
   };
-  createCardDivs();
+  shufflingBaseCards();
+
+  const shufflingSpecialAttackCards = () => {
+    // Player special attack
+    const playerLvl = document.querySelector(".player-lvl").textContent.slice(-2);
+    if (playerLvl < 2) {
+      const singleCard = specialCardDatabase[0];
+
+      const cardDiv = document.createElement("div");
+      cardDiv.classList.add("card", card.name);
+      cardDiv.setAttribute("data-attack", card.attack);
+      cardDiv.setAttribute("data-heal", card.heal);
+      cardDiv.setAttribute("data-draw", card.draw);
+      cardDiv.setAttribute("data-dis", card.dis);
+
+      playerDeck.appendChild(cardDiv);
+      usedCards.push(singleCard);
+    } else {
+      specialCardDatabase.forEach((card) => {
+        const cardDiv = document.createElement("div");
+        cardDiv.classList.add("card", card.name);
+        cardDiv.setAttribute("data-attack", card.attack);
+        cardDiv.setAttribute("data-heal", card.heal);
+        cardDiv.setAttribute("data-draw", card.draw);
+        cardDiv.setAttribute("data-dis", card.dis);
+
+        playerDeck.appendChild(cardDiv);
+        usedCards.push(card);
+      });
+    }
+  };
+  shufflingSpecialAttackCards();
 
   // Marking cards functions
   let enemyCards = Array.from(enemyDeck.childNodes);
@@ -458,7 +506,7 @@ document.addEventListener("DOMContentLoaded", () => {
       let playerHealth = parseInt(playerHealthElement.textContent.slice(-1));
       let playerNewHealth = playerHealth - totalAttack;
       playerHealthElement.textContent = "Zdrowie: " + playerNewHealth + " " + "( - " + totalAttack + " )";
-      playerHealthElement.style.color = "red";
+      playerHealthElement.style.color = "yellow";
 
       let enemyHealthElement = document.querySelector(".enemy-health");
       let enemyHealth = parseInt(enemyHealthElement.textContent.slice(-1));
@@ -533,7 +581,7 @@ document.addEventListener("DOMContentLoaded", () => {
       let enemyHealth = parseInt(enemyHealthElement.textContent.slice(-1));
       let enemyNewHealth = enemyHealth - totalAttack;
       enemyHealthElement.textContent = "Zdrowie: " + enemyNewHealth + " " + "( - " + totalAttack + " )";
-      enemyHealthElement.style.color = "red";
+      enemyHealthElement.style.color = "yellow";
 
       let playerHealthElement = document.querySelector(".player-health");
       let playerHealth = parseInt(playerHealthElement.textContent.slice(-1));

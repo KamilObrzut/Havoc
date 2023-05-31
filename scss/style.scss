@@ -42,16 +42,22 @@ body {
         flex-direction: column;
         align-items: flex-start;
         position: relative;
-        top: 48%;
+        top: 43%;
         left: 15%;
         .description {
           margin: 1% 0;
         }
-        .player-health {
+        .health {
           color: greenyellow;
         }
-        .enemy-health {
-          color: greenyellow;
+        .attack {
+          color: rgb(255, 72, 0);
+        }
+        .speed {
+          color: rgb(0, 183, 255);
+        }
+        .armor {
+          color: rgb(156, 156, 156);
         }
       }
     }
@@ -134,6 +140,12 @@ body {
       }
       .white-dodge {
         background-image: url("../img/cards/white-dodge.jpg");
+      }
+      .azog-one-hit-one-heal {
+        background-image: url("../img/cards/azog-one-hit-one-heal.jpg");
+      }
+      .azog-two-hit-one-dis {
+        background-image: url("../img/cards/azog-two-hit-one-dis.jpg");
       }
     }
     .enemy-deck,

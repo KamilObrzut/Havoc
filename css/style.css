@@ -51,17 +51,23 @@ body {
   flex-direction: column;
   align-items: flex-start;
   position: relative;
-  top: 48%;
+  top: 43%;
   left: 15%;
 }
 .fight-board .hero-area .hero .description-container .description {
   margin: 1% 0;
 }
-.fight-board .hero-area .hero .description-container .player-health {
+.fight-board .hero-area .hero .description-container .health {
   color: greenyellow;
 }
-.fight-board .hero-area .hero .description-container .enemy-health {
-  color: greenyellow;
+.fight-board .hero-area .hero .description-container .attack {
+  color: rgb(255, 72, 0);
+}
+.fight-board .hero-area .hero .description-container .speed {
+  color: rgb(0, 183, 255);
+}
+.fight-board .hero-area .hero .description-container .armor {
+  color: rgb(156, 156, 156);
 }
 .fight-board .hero-area .player-hero {
   background-image: url("..//img/cards/hero-azog.png");
@@ -195,6 +201,18 @@ body {
 .fight-board .fight-area .enemy-fight-cards .white-dodge,
 .fight-board .fight-area .player-fight-cards .white-dodge {
   background-image: url("../img/cards/white-dodge.jpg");
+}
+.fight-board .fight-area .enemy-deck .azog-one-hit-one-heal,
+.fight-board .fight-area .player-deck .azog-one-hit-one-heal,
+.fight-board .fight-area .enemy-fight-cards .azog-one-hit-one-heal,
+.fight-board .fight-area .player-fight-cards .azog-one-hit-one-heal {
+  background-image: url("../img/cards/azog-one-hit-one-heal.jpg");
+}
+.fight-board .fight-area .enemy-deck .azog-two-hit-one-dis,
+.fight-board .fight-area .player-deck .azog-two-hit-one-dis,
+.fight-board .fight-area .enemy-fight-cards .azog-two-hit-one-dis,
+.fight-board .fight-area .player-fight-cards .azog-two-hit-one-dis {
+  background-image: url("../img/cards/azog-two-hit-one-dis.jpg");
 }
 .fight-board .fight-area .enemy-deck,
 .fight-board .fight-area .player-deck {
