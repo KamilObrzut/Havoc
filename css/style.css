@@ -23,6 +23,96 @@ body {
   overflow: hidden;
 }
 
+.instruction {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90vw;
+  height: 90vh;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  padding: 10px;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(0deg, rgb(0, 0, 0) 0%, rgb(7, 32, 36) 100%);
+  box-shadow: 0px 11px 21px 1px #000000;
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  font-size: 1.2rem;
+  z-index: 5;
+}
+.instruction #logo {
+  height: 70px;
+  margin: 20px 0;
+}
+.instruction .btn-close-instruction {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background-color: transparent;
+  border: none;
+  font-size: 2rem;
+  color: white;
+  transition: 0.7s;
+}
+.instruction .btn-close-instruction:hover {
+  color: aqua;
+  transform: scale(1.2);
+}
+.instruction h1 {
+  font-size: 2rem;
+  margin: 20px 0 10px 0;
+}
+.instruction h2 {
+  margin: 40px 0 20px 0;
+}
+.instruction .instruction-description {
+  padding: 20px 20px;
+  font-size: 1.3rem;
+}
+.instruction .instruction-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px 50px;
+}
+.instruction .instruction-cards img {
+  height: 140px;
+  margin: 5px 5px;
+}
+.instruction .btn-start {
+  margin: 50px 0;
+  padding: 10px 50px;
+  border: none;
+  border-radius: 5px;
+  text-transform: uppercase;
+  background-color: rgb(0, 163, 163);
+  color: white;
+  transition: 1s;
+}
+.instruction .btn-start:hover {
+  transform: scale(1.2);
+  background-color: aqua;
+  color: black;
+}
+
+.instruction::-webkit-scrollbar {
+  width: 6px;
+}
+
+.instruction::-webkit-scrollbar-thumb {
+  background-color: rgba(17, 176, 204, 0.2);
+}
+
+.instruction::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(0, 163, 163);
+}
+
+.disable {
+  display: none;
+}
+
 .fight-board {
   box-sizing: border-box;
   display: flex;
@@ -202,16 +292,16 @@ body {
 .fight-board .fight-area .player-fight-cards .white-dodge {
   background-image: url("../img/cards/white-dodge.jpg");
 }
-.fight-board .fight-area .enemy-deck .azog-one-hit-one-heal,
-.fight-board .fight-area .player-deck .azog-one-hit-one-heal,
-.fight-board .fight-area .enemy-fight-cards .azog-one-hit-one-heal,
-.fight-board .fight-area .player-fight-cards .azog-one-hit-one-heal {
+.fight-board .fight-area .enemy-deck .white-azog-one-hit-one-heal,
+.fight-board .fight-area .player-deck .white-azog-one-hit-one-heal,
+.fight-board .fight-area .enemy-fight-cards .white-azog-one-hit-one-heal,
+.fight-board .fight-area .player-fight-cards .white-azog-one-hit-one-heal {
   background-image: url("../img/cards/azog-one-hit-one-heal.jpg");
 }
-.fight-board .fight-area .enemy-deck .azog-two-hit-one-dis,
-.fight-board .fight-area .player-deck .azog-two-hit-one-dis,
-.fight-board .fight-area .enemy-fight-cards .azog-two-hit-one-dis,
-.fight-board .fight-area .player-fight-cards .azog-two-hit-one-dis {
+.fight-board .fight-area .enemy-deck .white-azog-two-hit-one-dis,
+.fight-board .fight-area .player-deck .white-azog-two-hit-one-dis,
+.fight-board .fight-area .enemy-fight-cards .white-azog-two-hit-one-dis,
+.fight-board .fight-area .player-fight-cards .white-azog-two-hit-one-dis {
   background-image: url("../img/cards/azog-two-hit-one-dis.jpg");
 }
 .fight-board .fight-area .enemy-deck,
@@ -318,6 +408,19 @@ body {
   align-items: center;
   height: 7%;
   margin: 3px 0;
+}
+.fight-board .fight-area .fight .pupup {
+  position: absolute;
+  width: 200px;
+  padding: 20px 20px;
+  background-color: rgb(27, 27, 27);
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  font-size: 1.2rem;
+  text-align: center;
+}
+.fight-board .fight-area .fight .disable {
+  display: none;
 }
 .fight-board .fight-area .fight .btn-fight {
   width: 130px;
@@ -430,6 +533,19 @@ body {
   }
 }
 @media (min-width: 667px) {
+  .instruction {
+    width: 70vw;
+  }
+  .instruction #logo {
+    height: 150px;
+  }
+  .instruction .btn-close-instruction {
+    right: 30px;
+    top: 20px;
+  }
+  .instruction .instruction-description {
+    padding: 20px 100px;
+  }
   .fight-board {
     flex-direction: row;
     padding: 3vh 0;
@@ -503,6 +619,9 @@ body {
   }
 }
 @media (max-height: 500px) and (min-width: 667px) {
+  .instruction #logo {
+    height: 80px;
+  }
   .fight-board {
     flex-direction: row;
   }

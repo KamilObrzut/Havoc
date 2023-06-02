@@ -11,13 +11,72 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;0,700;1,900&family=Nunito:wght@200;400&family=Raleway:wght@400;700&display=swap" rel="stylesheet" />
   </head>
   <body>
+    <div class="instruction">
+      <img id="logo" src="./img/havoc-logo.png" alt="Logo Havoc" />
+      <button class="btn-close-instruction">x</button>
+      <h1>Witaj podróżniku</h1>
+      <p class="instruction-description">
+        Havoc jest cyfrową grą planszową osadzoną w klimacie dark fantasy. Aktualnie gra jest w trakcie tworzenia i prezentowana zawartość to ułamek tego czym będzie w przyszłości. To co zaraz
+        zobaczysz to stół walki która oparta jest na kartach i systemie turowym. Pozwól że przedstawie kilka najważniejszych zasad:
+      </p>
+      <h2>1. Kolory</h2>
+      <p class="instruction-description">Karty zostały podzielona na 5 kolorów:</p>
+      <div class="instruction-cards">
+        <img src="./img/cards/blue-one-hit.jpg" alt="Niebieska karta ataku - obrazenia 1" />
+        <img src="./img/cards/red-one-hit.jpg" alt="Niebieska karta ataku - obrazenia 1" />
+        <img src="./img/cards/yellow-one-hit.jpg" alt="Niebieska karta ataku - obrazenia 1" />
+        <img src="./img/cards/green-one-hit.jpg" alt="Niebieska karta ataku - obrazenia 1" />
+        <img src="./img/cards/white-two-draw.jpg" alt="Niebieska karta ataku - obrazenia 1" />
+      </div>
+      <p class="instruction-description">
+        Karty tego samego koloru można ze soba łączyć podczas atakowania ale nie możemy mieszać ze sobą kolorów. Wyjątkiem jest kolor biały który jest uniwersalny. Możemy go dodać do każdego koloru
+        ale może to być maksymalnie jedna karta biała podczas tury. W ten sposób możemy robić kombinacje.
+      </p>
+      <h2>2. Rodzaje ataków</h2>
+      <p class="instruction-description">Karty zostały podzielona na kilka rodzajów ataku:</p>
+      <div class="instruction-cards">
+        <img src="./img/cards/blue-one-hit.jpg" alt="Niebieska karta ataku - obrazenia 1" />
+        <img src="./img/cards/red-one-heal.jpg" alt="Niebieska karta ataku - obrazenia 1" />
+        <img src="./img/cards/yellow-two-hit.jpg" alt="Niebieska karta ataku - obrazenia 1" />
+        <img src="./img/cards/green-one-hit-one-draw.jpg" alt="Niebieska karta ataku - obrazenia 1" />
+        <img src="./img/cards/white-two-draw.jpg" alt="Niebieska karta ataku - obrazenia 1" />
+      </div>
+      <p class="instruction-description">
+        Możemy zadawać obrażenia, leczyć się, dobierać karty i wytrącać z ręki karty przeciwnika. Każda karta posiada opis działania. Pamiętaj że nie możesz uleczyć się ponad stan zdrowia z początku
+        gry, wiec odradzam zaczynanie walki od leczenia.
+      </p>
+      <h2>3. Karty specjalne</h2>
+      <p class="instruction-description">W grze występują także karty specjalne które są przypisane do bohaterów oraz do przedmiotów (przedmioty wkrótce)</p>
+      <div class="instruction-cards">
+        <img src="./img/cards/azog-one-hit-one-heal.jpg" alt="Niebieska karta ataku - obrazenia 1" />
+        <img src="./img/cards/azog-two-hit-one-dis.jpg" alt="Niebieska karta ataku - obrazenia 1" />
+      </div>
+      <p class="instruction-description">
+        Każdy bohater oraz wróg posiada indywidualne umiejętności które zostaną dołączonę do Twojej ręki startowej wraz z początkiem pojedynku. Karty te są koloru białego i można je łączyć zgodnie z
+        zasadą opisaną wyżej. Wkrótce do gry zostana dodane przedmioty z unikatowymi kartami. Jesli będziesz w posiadaniu takiego przedmiotu, jego karta zostanie dołączona do kart na Twojej ręce
+        podczas startu potyczki.
+      </p>
+      <h2>4. Cel gry</h2>
+      <p class="instruction-description">
+        Celem gry jest pokonanie Twojego przeciwnika poprzez obniżenie jego punktów zdrowia do poziomu 0. Graj mądrze, twórz kombinacje i oszczedzaj karty kiedy jest taka potrzeba
+      </p>
+      <h2>5. Co w przyszłości?</h2>
+      <p class="instruction-description">
+        1. Stworzenie prostego modelu sztucznej inteligencji która pozwoli przeciwnikowi wykonywać ruchy. Po zaimplementoweniu zasłonie również karty przeciwnika by wprowadzić element zaskoczenia.
+        <br />
+        2. Dodanie 16 przedmiotów z unikatowymi kartami walki, systemu zdobywania doświadczenia i awansowania bohatera na kolejne poziomy. <br />
+        4. Dodanie ponad 12 wrogów z unikatowymi umiejętnościami. 3. Budowa mapy po której turowo będzie można się przemieszczać pionem bohatera i napotykać kolejnych wrogów.
+      </p>
+
+      <button class="btn-start">start</button>
+    </div>
     <div class="fight-board">
       <div class="hero-area">
         <div class="hero enemy-hero">
           <div class="description-container">
             <p class="description enemy-lvl lvl">Poziom: 5</p>
             <p class="description enemy-speed speed">Szybkosć: 4</p>
-            <p class="description enemy-attack attack">Atak: 8</p>
+            <p class="description enemy-attack attack">Atak: 7</p>
             <p class="description enemy-health health">Zdrowie: 8</p>
             <p class="description enemy-armor armor">Pancerz: 0</p>
           </div>
@@ -33,6 +92,9 @@
         <div class="fight">
           <button class="btn-fight-enemy btn-fight">Atak wroga</button>
           <button class="btn-fight-player btn-fight">Atak gracza</button>
+          <div class="pupup white-warning disable">
+            <p>Nieprawidłowa kombinacja kart. Możesz użyc dowolną ilość kart jednego koloru oraz maksymalnie jedną białą.</p>
+          </div>
         </div>
         <div class="player-fight-cards"></div>
         <div class="up-or-down">

@@ -17,6 +17,93 @@ body {
   overflow: hidden;
 }
 
+.instruction {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90vw;
+  height: 90vh;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  padding: 10px;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgb(7, 32, 36) 100%);
+  -webkit-box-shadow: 0px 11px 21px 1px #000000;
+  box-shadow: 0px 11px 21px 1px #000000;
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  font-size: 1.2rem;
+  z-index: 5;
+  #logo {
+    height: 70px;
+    margin: 20px 0;
+  }
+  .btn-close-instruction {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 2rem;
+    color: white;
+    transition: 0.7s;
+  }
+  .btn-close-instruction:hover {
+    color: aqua;
+    transform: scale(1.2);
+  }
+  h1 {
+    font-size: 2rem;
+    margin: 20px 0 10px 0;
+  }
+  h2 {
+    margin: 40px 0 20px 0;
+  }
+  .instruction-description {
+    padding: 20px 20px;
+    font-size: 1.3rem;
+  }
+  .instruction-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px 50px;
+    img {
+      height: 140px;
+      margin: 5px 5px;
+    }
+  }
+  .btn-start {
+    margin: 50px 0;
+    padding: 10px 50px;
+    border: none;
+    border-radius: 5px;
+    text-transform: uppercase;
+    background-color: rgb(0, 163, 163);
+    color: white;
+    transition: 1s;
+  }
+  .btn-start:hover {
+    transform: scale(1.2);
+    background-color: aqua;
+    color: black;
+  }
+}
+.instruction::-webkit-scrollbar {
+  width: 6px;
+}
+.instruction::-webkit-scrollbar-thumb {
+  background-color: rgba(17, 176, 204, 0.2);
+}
+.instruction::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(0, 163, 163);
+}
+.disable {
+  display: none;
+}
+
 .fight-board {
   box-sizing: border-box;
   display: flex;
@@ -141,10 +228,10 @@ body {
       .white-dodge {
         background-image: url("../img/cards/white-dodge.jpg");
       }
-      .azog-one-hit-one-heal {
+      .white-azog-one-hit-one-heal {
         background-image: url("../img/cards/azog-one-hit-one-heal.jpg");
       }
-      .azog-two-hit-one-dis {
+      .white-azog-two-hit-one-dis {
         background-image: url("../img/cards/azog-two-hit-one-dis.jpg");
       }
     }
@@ -233,6 +320,19 @@ body {
       align-items: center;
       height: 7%;
       margin: 3px 0;
+      .pupup {
+        position: absolute;
+        width: 200px;
+        padding: 20px 20px;
+        background-color: rgb(27, 27, 27);
+        border-radius: 5px;
+        color: rgb(255, 255, 255);
+        font-size: 1.2rem;
+        text-align: center;
+      }
+      .disable {
+        display: none;
+      }
       .btn-fight {
         width: 130px;
         padding: 8px 0;
@@ -351,6 +451,19 @@ body {
 }
 
 @media (min-width: 667px) {
+  .instruction {
+    width: 70vw;
+    #logo {
+      height: 150px;
+    }
+    .btn-close-instruction {
+      right: 30px;
+      top: 20px;
+    }
+    .instruction-description {
+      padding: 20px 100px;
+    }
+  }
   .fight-board {
     flex-direction: row;
     padding: 3vh 0;
@@ -421,6 +534,11 @@ body {
 }
 
 @media (max-height: 500px) and (min-width: 667px) {
+  .instruction {
+    #logo {
+      height: 80px;
+    }
+  }
   .fight-board {
     flex-direction: row;
     .hero-area {

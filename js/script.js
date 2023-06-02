@@ -13,6 +13,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnUpPlayer = document.querySelector(".btn-up-player");
   const btnFightEnemy = document.querySelector(".btn-fight-enemy");
   const btnFightPlayer = document.querySelector(".btn-fight-player");
+  const heroEnemy = document.querySelector(".enemy-hero");
+  const heroPlayer = document.querySelector(".player-hero");
+  const popupWhiteWarning = document.querySelector(".white-warning");
+  const btnCloseInstruction = document.querySelector(".btn-close-instruction");
+  const btnStartCloseInstruction = document.querySelector(".btn-start");
+  const instruction = document.querySelector(".instruction");
 
   // Card database
   const baseCardsDatabase = [
@@ -21,144 +27,168 @@ document.addEventListener("DOMContentLoaded", () => {
       attack: 1,
       heal: 0,
       draw: 0,
+      dis: 0,
     },
     {
       name: "red-one-hit",
       attack: 1,
       heal: 0,
       draw: 0,
+      dis: 0,
     },
     {
       name: "red-one-hit",
       attack: 1,
       heal: 0,
       draw: 0,
+      dis: 0,
     },
     {
       name: "red-two-hit",
       attack: 2,
       heal: 0,
       draw: 0,
+      dis: 0,
     },
     {
       name: "red-one-heal",
       attack: 0,
       heal: 1,
       draw: 0,
+      dis: 0,
     },
     {
       name: "red-one-hit-one-draw",
       attack: 1,
       heal: 0,
       draw: 1,
+      dis: 0,
     },
     {
       name: "blue-one-hit",
       attack: 1,
       heal: 0,
       draw: 0,
+      dis: 0,
     },
     {
       name: "blue-one-hit",
       attack: 1,
       heal: 0,
       draw: 0,
+      dis: 0,
     },
     {
       name: "blue-one-hit",
       attack: 1,
       heal: 0,
       draw: 0,
+      dis: 0,
     },
     {
       name: "blue-two-hit",
       attack: 2,
       heal: 0,
       draw: 0,
+      dis: 0,
     },
     {
       name: "blue-one-heal",
       attack: 0,
       heal: 1,
       draw: 0,
+      dis: 0,
     },
     {
       name: "blue-one-hit-one-draw",
       attack: 1,
       heal: 0,
       draw: 1,
+      dis: 0,
     },
     {
       name: "green-one-hit",
       attack: 1,
       heal: 0,
       draw: 0,
+      dis: 0,
     },
     {
       name: "green-one-hit",
       attack: 1,
       heal: 0,
       draw: 0,
+      dis: 0,
     },
     {
       name: "green-one-hit",
       attack: 1,
       heal: 0,
       draw: 0,
+      dis: 0,
     },
     {
       name: "green-two-hit",
       attack: 2,
       heal: 0,
       draw: 0,
+      dis: 0,
     },
     {
       name: "green-one-heal",
       attack: 0,
       heal: 1,
       draw: 0,
+      dis: 0,
     },
     {
       name: "green-one-hit-one-draw",
       attack: 1,
       heal: 0,
       draw: 1,
+      dis: 0,
     },
     {
       name: "yellow-one-hit",
       attack: 1,
       heal: 0,
       draw: 0,
+      dis: 0,
     },
     {
       name: "yellow-one-hit",
       attack: 1,
       heal: 0,
       draw: 0,
+      dis: 0,
     },
     {
       name: "yellow-one-hit",
       attack: 1,
       heal: 0,
       draw: 0,
+      dis: 0,
     },
     {
       name: "yellow-two-hit",
       attack: 2,
       heal: 0,
       draw: 0,
+      dis: 0,
     },
     {
       name: "yellow-one-heal",
       attack: 0,
       heal: 1,
       draw: 0,
+      dis: 0,
     },
     {
       name: "yellow-one-hit-one-draw",
       attack: 1,
       heal: 0,
       draw: 1,
+      dis: 0,
     },
     //{
     //  name: "white-dodge",
@@ -171,25 +201,35 @@ document.addEventListener("DOMContentLoaded", () => {
       attack: 0,
       heal: 0,
       draw: 2,
+      dis: 0,
     },
   ];
 
   const specialCardDatabase = [
     {
-      name: "azog-one-hit-one-heal",
+      name: "white-azog-one-hit-one-heal",
       attack: 1,
       heal: 1,
       draw: 0,
       dis: 0,
     },
     {
-      name: "azog-two-hit-one-dis",
+      name: "white-azog-two-hit-one-dis",
       attack: 2,
       heal: 1,
       draw: 0,
       dis: 1,
     },
   ];
+
+  // Close instruction function
+  const closeInstruction = () => {
+    instruction.classList.add("disable");
+  };
+
+  console.log(btnCloseInstruction, btnStartCloseInstruction, instruction);
+  btnCloseInstruction.addEventListener("click", closeInstruction);
+  btnStartCloseInstruction.addEventListener("click", closeInstruction);
 
   // Interface Funcitions
   const calculateHeroSize = () => {
@@ -267,6 +307,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cardDiv.setAttribute("data-attack", card.attack);
       cardDiv.setAttribute("data-heal", card.heal);
       cardDiv.setAttribute("data-draw", card.draw);
+      cardDiv.setAttribute("data-dis", card.dis);
       playerDeck.appendChild(cardDiv);
       usedCards.push(card);
     });
@@ -285,6 +326,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cardDiv.setAttribute("data-attack", card.attack);
       cardDiv.setAttribute("data-heal", card.heal);
       cardDiv.setAttribute("data-draw", card.draw);
+      cardDiv.setAttribute("data-dis", card.dis);
       enemyDeck.appendChild(cardDiv);
       usedCards.push(card);
     });
@@ -294,32 +336,27 @@ document.addEventListener("DOMContentLoaded", () => {
   const shufflingSpecialAttackCards = () => {
     // Player special attack
     const playerLvl = document.querySelector(".player-lvl").textContent.slice(-2);
+    let card;
+
     if (playerLvl < 2) {
       const singleCard = specialCardDatabase[0];
-
-      const cardDiv = document.createElement("div");
-      cardDiv.classList.add("card", card.name);
-      cardDiv.setAttribute("data-attack", card.attack);
-      cardDiv.setAttribute("data-heal", card.heal);
-      cardDiv.setAttribute("data-draw", card.draw);
-      cardDiv.setAttribute("data-dis", card.dis);
-
-      playerDeck.appendChild(cardDiv);
-      usedCards.push(singleCard);
+      card = singleCard;
     } else {
-      specialCardDatabase.forEach((card) => {
-        const cardDiv = document.createElement("div");
-        cardDiv.classList.add("card", card.name);
-        cardDiv.setAttribute("data-attack", card.attack);
-        cardDiv.setAttribute("data-heal", card.heal);
-        cardDiv.setAttribute("data-draw", card.draw);
-        cardDiv.setAttribute("data-dis", card.dis);
-
-        playerDeck.appendChild(cardDiv);
-        usedCards.push(card);
-      });
+      const singleCardd = specialCardDatabase[1];
+      card = singleCardd;
     }
+
+    const cardDiv = document.createElement("div");
+    cardDiv.classList.add("card", card.name);
+    cardDiv.setAttribute("data-attack", card.attack);
+    cardDiv.setAttribute("data-heal", card.heal);
+    cardDiv.setAttribute("data-draw", card.draw);
+    cardDiv.setAttribute("data-dis", card.dis);
+
+    playerDeck.appendChild(cardDiv);
+    usedCards.push(card);
   };
+
   shufflingSpecialAttackCards();
 
   // Marking cards functions
@@ -391,7 +428,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     enemyCards = Array.from(enemyDeck.childNodes);
     markingEnemyCards();
-    enemyMarkedCards = [];
   };
 
   const moveEnemyCardsToDeck = () => {
@@ -413,7 +449,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     playerCards = Array.from(playerDeck.childNodes);
     markingPlayerCards();
-    playerMarkedCards = [];
   };
 
   const movePlayerCardsToDeck = () => {
@@ -433,30 +468,18 @@ document.addEventListener("DOMContentLoaded", () => {
   btnDownPlayer.addEventListener("click", movePlayerCardsToDeck);
 
   //Animation attack
-  const heroEnemy = document.querySelector(".enemy-hero");
-  const heroPlayer = document.querySelector(".player-hero");
-
   const enemyAnimationAttack = () => {
-    if (enemyFightCards.childElementCount === 0) {
-      return;
-    }
     heroEnemy.classList.add("enemy-hero-attack-animation");
     setTimeout(() => {
       heroEnemy.classList.remove("enemy-hero-attack-animation");
     }, 1000);
   };
   const playerAnimationAttack = () => {
-    if (playerFightCards.childElementCount === 0) {
-      return;
-    }
     heroPlayer.classList.add("player-hero-attack-animation");
     setTimeout(() => {
       heroPlayer.classList.remove("player-hero-attack-animation");
     }, 1000);
   };
-
-  btnFightEnemy.addEventListener("click", enemyAnimationAttack);
-  btnFightPlayer.addEventListener("click", playerAnimationAttack);
 
   //FirstTurn Function
   const firstTurn = () => {
@@ -483,9 +506,30 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    let cardsInFight = Array.from(enemyFightCards.childNodes);
+    let checkCards = [];
+
+    cardsInFight.forEach((card) => {
+      const cardColor = card.classList[1].split("-")[0];
+      checkCards.push(cardColor);
+    });
+    const whiteCount = checkCards.filter((value) => value === "white").length;
+    const uniqueColors = [...new Set(checkCards.filter((color) => color !== "white"))];
+    if (whiteCount > 1 || uniqueColors.length > 1) {
+      console.log("Występują różne kolory w decku.");
+      popupWhiteWarning.classList.remove("disable");
+      setTimeout(() => {
+        popupWhiteWarning.classList.add("disable");
+      }, 2000);
+      return;
+    }
+
+    enemyAnimationAttack();
+
     let totalAttack = 0;
     let totalHeal = 0;
     let totalDraw = 0;
+    let totalDis = 0;
 
     enemyFightCards.childNodes.forEach((card) => {
       const attack = parseInt(card.getAttribute("data-attack"));
@@ -539,6 +583,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cardDiv.setAttribute("data-attack", card.attack);
         cardDiv.setAttribute("data-heal", card.heal);
         cardDiv.setAttribute("data-draw", card.draw);
+        cardDiv.setAttribute("data-dis", card.dis);
         enemyDeck.appendChild(cardDiv);
 
         usedCards.push(card);
@@ -558,9 +603,30 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    let cardsInFight = Array.from(playerFightCards.childNodes);
+    let checkCards = [];
+
+    cardsInFight.forEach((card) => {
+      const cardColor = card.classList[1].split("-")[0];
+      checkCards.push(cardColor);
+    });
+    const whiteCount = checkCards.filter((value) => value === "white").length;
+    const uniqueColors = [...new Set(checkCards.filter((color) => color !== "white"))];
+    if (whiteCount > 1 || uniqueColors.length > 1) {
+      console.log("Występują różne kolory w decku.");
+      popupWhiteWarning.classList.remove("disable");
+      setTimeout(() => {
+        popupWhiteWarning.classList.add("disable");
+      }, 2000);
+      return;
+    }
+
+    playerAnimationAttack();
+
     let totalAttack = 0;
     let totalHeal = 0;
     let totalDraw = 0;
+    let totalDis = 0;
 
     playerFightCards.childNodes.forEach((card) => {
       const attack = parseInt(card.getAttribute("data-attack"));
@@ -614,6 +680,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cardDiv.setAttribute("data-attack", card.attack);
         cardDiv.setAttribute("data-heal", card.heal);
         cardDiv.setAttribute("data-draw", card.draw);
+        cardDiv.setAttribute("data-dis", card.dis);
         playerDeck.appendChild(cardDiv);
 
         usedCards.push(card);
