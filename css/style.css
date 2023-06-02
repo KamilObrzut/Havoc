@@ -409,7 +409,7 @@ body {
   height: 7%;
   margin: 3px 0;
 }
-.fight-board .fight-area .fight .pupup {
+.fight-board .fight-area .fight .popup {
   position: absolute;
   width: 200px;
   padding: 20px 20px;
@@ -418,6 +418,47 @@ body {
   color: rgb(255, 255, 255);
   font-size: 1.2rem;
   text-align: center;
+}
+.fight-board .fight-area .fight .popup-win {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 20vh;
+  width: 80vw;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(0deg, rgb(0, 0, 0) 0%, rgb(7, 32, 36) 100%);
+  box-shadow: 0px 11px 21px 1px rgba(0, 0, 0, 0.5137254902);
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  font-size: 1.2rem;
+  text-align: center;
+}
+.fight-board .fight-area .fight .popup-win h3 {
+  margin: 5px;
+  padding: 0 10px;
+  font-size: 1.8rem;
+}
+.fight-board .fight-area .fight .popup-win p {
+  margin: 5px;
+  padding: 0 10px;
+  font-size: 1.2rem;
+}
+.fight-board .fight-area .fight .popup-win .btn-close-win-popup {
+  margin: 10px 0;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 5px;
+  text-transform: uppercase;
+  background-color: rgb(0, 163, 163);
+  color: white;
+  transition: 1s;
+}
+.fight-board .fight-area .fight .popup-win .btn-close-win-popup:hover {
+  transform: scale(1.2);
+  background-color: aqua;
+  color: black;
 }
 .fight-board .fight-area .fight .disable {
   display: none;
@@ -617,6 +658,10 @@ body {
   .fight-board .fight-area .fight .btn-fight-player {
     transform: translateX(10px);
   }
+  .fight-board .fight-area .fight .popup-win {
+    height: 20vh;
+    width: 30vw;
+  }
 }
 @media (max-height: 500px) and (min-width: 667px) {
   .instruction #logo {
@@ -672,6 +717,10 @@ body {
     padding: 4px 0;
     background-size: 25%;
     width: 100px;
+  }
+  .fight-board .fight-area .fight .popup-win {
+    height: 40vh;
+    width: 50vw;
   }
   .fight-board .fight-area .up-or-down {
     display: flex;

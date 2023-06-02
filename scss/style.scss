@@ -320,7 +320,7 @@ body {
       align-items: center;
       height: 7%;
       margin: 3px 0;
-      .pupup {
+      .popup {
         position: absolute;
         width: 200px;
         padding: 20px 20px;
@@ -329,6 +329,48 @@ body {
         color: rgb(255, 255, 255);
         font-size: 1.2rem;
         text-align: center;
+      }
+      .popup-win {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        height: 20vh;
+        width: 80vw;
+        background: rgb(0, 0, 0);
+        background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgb(7, 32, 36) 100%);
+        -webkit-box-shadow: 0px 11px 21px 1px #00000073;
+        box-shadow: 0px 11px 21px 1px #00000083;
+        border-radius: 5px;
+        color: rgb(255, 255, 255);
+        font-size: 1.2rem;
+        text-align: center;
+        h3 {
+          margin: 5px;
+          padding: 0 10px;
+          font-size: 1.8rem;
+        }
+        p {
+          margin: 5px;
+          padding: 0 10px;
+          font-size: 1.2rem;
+        }
+        .btn-close-win-popup {
+          margin: 10px 0;
+          padding: 10px 30px;
+          border: none;
+          border-radius: 5px;
+          text-transform: uppercase;
+          background-color: rgb(0, 163, 163);
+          color: white;
+          transition: 1s;
+        }
+        .btn-close-win-popup:hover {
+          transform: scale(1.2);
+          background-color: aqua;
+          color: black;
+        }
       }
       .disable {
         display: none;
@@ -528,6 +570,10 @@ body {
         .btn-fight-player {
           transform: translateX(10px);
         }
+        .popup-win {
+          height: 20vh;
+          width: 30vw;
+        }
       }
     }
   }
@@ -582,6 +628,10 @@ body {
           padding: 4px 0;
           background-size: 25%;
           width: 100px;
+        }
+        .popup-win {
+          height: 40vh;
+          width: 50vw;
         }
       }
       .up-or-down {

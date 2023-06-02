@@ -68,7 +68,6 @@
         4. Dodanie ponad 12 wrogów z unikatowymi umiejętnościami. <br />
         5. Budowa mapy po której będzie można przemieszczać się turowo swoim pionem oraz napotykać kolejnych wrogów.
       </p>
-
       <button class="btn-start">start</button>
     </div>
     <div class="fight-board">
@@ -93,8 +92,13 @@
         <div class="fight">
           <button class="btn-fight-enemy btn-fight">Atak wroga</button>
           <button class="btn-fight-player btn-fight">Atak gracza</button>
-          <div class="pupup white-warning disable">
+          <div class="popup white-warning disable">
             <p>Nieprawidłowa kombinacja kart. Możesz użyc dowolną ilość kart jednego koloru oraz maksymalnie jedną białą.</p>
+          </div>
+          <div class="popup-win disable">
+            <h3 class="who-win">Wygrywa</h3>
+            <p class="text-win">tekst na podmiane</p>
+            <button class="btn-close-win-popup">restart</button>
           </div>
         </div>
         <div class="player-fight-cards"></div>

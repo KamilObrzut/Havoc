@@ -19,6 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnCloseInstruction = document.querySelector(".btn-close-instruction");
   const btnStartCloseInstruction = document.querySelector(".btn-start");
   const instruction = document.querySelector(".instruction");
+  const popupWin = document.querySelector(".popup-win");
+  const btnCloseWinPopup = document.querySelector(".btn-close-win-popup");
 
   // Card database
   const baseCardsDatabase = [
@@ -226,8 +228,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeInstruction = () => {
     instruction.classList.add("disable");
   };
-
-  console.log(btnCloseInstruction, btnStartCloseInstruction, instruction);
   btnCloseInstruction.addEventListener("click", closeInstruction);
   btnStartCloseInstruction.addEventListener("click", closeInstruction);
 
@@ -516,7 +516,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const whiteCount = checkCards.filter((value) => value === "white").length;
     const uniqueColors = [...new Set(checkCards.filter((color) => color !== "white"))];
     if (whiteCount > 1 || uniqueColors.length > 1) {
-      console.log("Występują różne kolory w decku.");
       popupWhiteWarning.classList.remove("disable");
       setTimeout(() => {
         popupWhiteWarning.classList.add("disable");
@@ -613,7 +612,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const whiteCount = checkCards.filter((value) => value === "white").length;
     const uniqueColors = [...new Set(checkCards.filter((color) => color !== "white"))];
     if (whiteCount > 1 || uniqueColors.length > 1) {
-      console.log("Występują różne kolory w decku.");
       popupWhiteWarning.classList.remove("disable");
       setTimeout(() => {
         popupWhiteWarning.classList.add("disable");
@@ -701,15 +699,19 @@ document.addEventListener("DOMContentLoaded", () => {
     let playerHealthElement = document.querySelector(".player-health");
     let playerHealth = parseInt(playerHealthElement.textContent.slice(-9));
 
+    let whoWin = document.querySelector(".who-win");
+    let textWin = document.querySelector(".text-win");
     if (enemyHealth < 1) {
-      setTimeout(() => {
-        alert("Wygrywa AZOG! Odśwież aby zagrać ponownie");
-      }, 1000);
+      popupWin.classList.remove("disable");
+      whoWin.textContent = "Wygrałeś!";
+      textWin.textContent = "Gratuluje, spróbuj ponownie";
+      return;
     }
     if (playerHealth < 1) {
-      setTimeout(() => {
-        alert("Wygrywa HAVOC! Odśwież aby zagrać ponownie");
-      }, 1000);
+      popupWin.classList.remove("disable");
+      whoWin.textContent = "Wygrywa Przeciwnik";
+      textWin.textContent = "Nie poddawaj się spróbuj ponownie";
+      return;
     }
   };
 
@@ -722,6 +724,14 @@ document.addEventListener("DOMContentLoaded", () => {
     fightEnemy();
     gameOver();
   });
+
+  // Close popup after win
+  const closeWinPopUp = () => {
+    popupWin.classList.add("disable");
+    location.reload();
+  };
+
+  btnCloseWinPopup.addEventListener("click", closeWinPopUp);
 
   window.addEventListener("resize", calculateHeroSize);
   window.addEventListener("resize", calculateFontSize);
